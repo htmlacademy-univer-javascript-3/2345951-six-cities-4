@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app';
-
-// eslint-disable-next-line react-refresh/only-export-components
-const Settings = {
-  placesNumber: 312
-} as const;
+import App from './components/app/app';
+import {Settings} from './const';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
