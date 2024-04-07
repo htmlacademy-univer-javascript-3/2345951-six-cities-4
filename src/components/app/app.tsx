@@ -6,18 +6,21 @@ import Login from '../../pages/login';
 import NotFoundScreen from '../../pages/not-found';
 import Offer from '../../pages/offer';
 import PrivateRoute from '../private-route';
+import { OfferType } from '../../types/offer';
 
 type AppScreenProps = {
   placesNumber: number;
+  offers: OfferType[];
+  favorites: OfferType[];
 }
 
-export default function App({placesNumber}: AppScreenProps) {
+export default function App({placesNumber, offers, favorites}: AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main placesNumber={placesNumber} />}
+          element={<Main placesNumber={placesNumber} offers={offers} />}
         />
         <Route
           path={AppRoute.Login}
@@ -27,9 +30,9 @@ export default function App({placesNumber}: AppScreenProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <Favorites />
+              <Favorites favorites={favorites}/>
             </PrivateRoute>
           }
         />
