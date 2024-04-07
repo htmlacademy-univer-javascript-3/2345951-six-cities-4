@@ -1,19 +1,22 @@
-import Card from '../components/card.tsx';
+import OffersList from '../components/offers-list.tsx';
+import { OfferType } from '../types/offer.ts';
+import { Link } from 'react-router-dom';
 
 type MainScreenProps = {
   placesNumber: number;
+  offers: OfferType[];
 }
 
-export default function Main({placesNumber}: MainScreenProps): JSX.Element {
+export default function Main({placesNumber, offers}: MainScreenProps): JSX.Element {
   return(
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
+              <Link to='/' className="header__logo-link header__logo-link--active">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -95,11 +98,7 @@ export default function Main({placesNumber}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <OffersList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
