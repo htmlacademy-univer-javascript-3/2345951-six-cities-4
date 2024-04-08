@@ -6,10 +6,17 @@ export type OfferType = {
   type: string;
   rating: number;
   price: number;
-  city: string;
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+    };
+  };
   isFavorite: boolean;
   isPremium: boolean;
-};
+  };
 
 export type UserType = {
   avatar: string;

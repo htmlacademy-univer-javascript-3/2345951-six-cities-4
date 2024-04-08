@@ -9,7 +9,14 @@ export const offers: OfferType[] = [
     type: 'Apartment',
     rating: 4.8,
     price: 120,
-    city: 'Amsterdam',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 8
+      }
+    },
     isFavorite: true,
     isPremium: true,
   },
@@ -21,7 +28,14 @@ export const offers: OfferType[] = [
     type: 'Room',
     rating: 3,
     price: 80,
-    city: 'Amsterdam',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
+        zoom: 8
+      }
+    },
     isFavorite: true,
     isPremium: false,
   },
@@ -33,7 +47,14 @@ export const offers: OfferType[] = [
     type: 'Apartment',
     rating: 4,
     price: 132,
-    city: 'Cologne',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
+        zoom: 8
+      }
+    },
     isFavorite: true,
     isPremium: false,
   },
@@ -45,7 +66,14 @@ export const offers: OfferType[] = [
     type: 'Apartment',
     rating: 4.8,
     price: 180,
-    city: 'Cologne',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 8
+      }
+    },
     isFavorite: true,
     isPremium: false,
   },
