@@ -14,6 +14,7 @@ export type Place = {
   onListItemHover?: (listItemName: string) => void;
 };
 
+
 export default function Card(place: Place): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState('');
   function handleMouseOver() {
