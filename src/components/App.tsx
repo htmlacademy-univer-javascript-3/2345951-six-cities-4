@@ -1,61 +1,12 @@
-import Main from '../pages/Main.tsx';
-// import {Place} from './component.tsx';
+import Main from '../pages/main.tsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NotFoundPage from '../error/NotFound.tsx';
-import Offer from '../pages/Offer.tsx';
-import Login from '../pages/Login.tsx';
+import Offer from '../pages/offer.tsx';
+import Login from '../pages/login.tsx';
 import Favourites from '../pages/Favourites.tsx';
 import PrivateRoute from '../private/private-route.tsx';
 import {OfferType} from '../types/offer';
 
-// const cards: Place[] = [
-//   {
-//     name: 'Paris',
-//     type: 'Apartment',
-//     img: 'img/apartment-01.jpg',
-//     rating: 4,
-//     valuePerNight: 120,
-//     isPremium: true,
-//     isBookmarked: false,
-//   },
-//   {
-//     name: 'Wood and stone place',
-//     type: 'Room',
-//     img: 'img/room.jpg',
-//     rating: 4,
-//     valuePerNight: 80,
-//     isPremium: false,
-//     isBookmarked: true,
-//   },
-//   {
-//     name: 'Canal View Prinsengracht',
-//     type: 'Apartment',
-//     img: 'img/apartment-02.jpg',
-//     rating: 4,
-//     valuePerNight: 132,
-//     isPremium: false,
-//     isBookmarked: false,
-//   },
-//   {
-//     name: 'Nice, cozy, warm big bed apartment',
-//     type: 'Apartment',
-//     img: 'img/apartment-03.jpg',
-//     rating: 5,
-//     valuePerNight: 180,
-//     isPremium: true,
-//     isBookmarked: false,
-//   },
-//   {
-//     name: 'Wood and stone place',
-//     type: 'Room',
-//     img: 'img/room.jpg',
-//     rating: 4,
-//     valuePerNight: 80,
-//     isPremium: false,
-//     isBookmarked: true,
-//   },
-// ];
-//
 type AppProps = {
   offers: OfferType[];
 }
