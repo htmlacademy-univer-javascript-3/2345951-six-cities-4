@@ -3,7 +3,7 @@ import {AuthorizationStatus, OfferType} from '../types/offer.tsx';
 import NotFoundPage from '../error/NotFound.tsx';
 import ReviewsList from '../components/review-list.tsx';
 import Map from '../components/cities-map.tsx';
-import {useAppDispatch, useAppSelector} from '../hooks';
+import {useAppDispatch, useAppSelector} from '../hooks/index.ts';
 import {useEffect, useState} from 'react';
 import {fetchSingleOfferAction, fetchCommentsAction, updateFavourite} from '../api/api-action.ts';
 import CardsList from '../cards/offerList.tsx';

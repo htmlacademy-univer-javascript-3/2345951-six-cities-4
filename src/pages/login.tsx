@@ -1,5 +1,5 @@
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch} from '../hooks';
+import {useAppDispatch} from '../hooks/index.ts';
 import {useNavigate} from 'react-router-dom';
 import {loginAction} from '../api/api-action.ts';
 

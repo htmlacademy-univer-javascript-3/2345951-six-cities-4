@@ -3,7 +3,7 @@ import CardsList from '../cards/offerList.tsx';
 import {constCities, filters} from '../consts/cities.tsx';
 import {useState} from 'react';
 import Map from '../components/cities-map.tsx';
-import {store} from '../store';
+import {store} from '../store/index.ts';
 import Filters from '../components/filter.tsx';
 import CitiesList from '../cities-list/cities-list.tsx';
 import Header from './Header.tsx';
