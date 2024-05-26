@@ -51,7 +51,9 @@ export default function Offer ({offers}: OffersProps) {
       dispatch(updateFavouritesCounter(favouritesCounter + 1));
     }
   };
-  const points = offers.map((item) => ({
+  const otherOffers = offers.filter((e) => e !== offer);
+  const closestOffers = otherOffers.slice(0, 3);
+  const points = closestOffers.concat(offers.filter((e) => e === offer)).map((item) => ({
     lat: item.location.latitude,
     lng: item.location.longitude,
     name: item.title,
@@ -64,7 +66,6 @@ export default function Offer ({offers}: OffersProps) {
     return <Spinner />;
   }
   const selectedPoint = points.find((o) => o.title === offer.title);
-  const otherOffers = offers.filter((e) => e !== offer);
   const offerInside = currentOffer.goods.map((item) => (
     <li className="offer__inside-item" key={`${item}`}>
       {item}
@@ -167,7 +168,7 @@ export default function Offer ({offers}: OffersProps) {
             Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <CardsList citiesCards={otherOffers.map((item) => ({...item, image: item.previewImage, roomName: item.title, roomType: item.type}))} sortType={filters.TOP_RATED}/>
+              <CardsList citiesCards={closestOffers.map((item) => ({...item, image: item.previewImage, roomName: item.title, roomType: item.type}))} sortType={filters.TOP_RATED}/>
             </div>
           </section>
         </div>
