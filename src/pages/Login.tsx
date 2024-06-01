@@ -1,4 +1,4 @@
-import {FormEvent, useRef} from 'react';
+import {FormEvent, useRef, useState} from 'react';
 import {useAppDispatch} from '../hooks/index.ts';
 import {useNavigate} from 'react-router-dom';
 import {loginAction} from '../api/api-action.ts';
@@ -6,17 +6,33 @@ import {loginAction} from '../api/api-action.ts';
 export default function Login () {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const validatePassword = (password: string) => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/;
+    return regex.test(password);
+  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
+      const login = loginRef.current.value;
+      const password = passwordRef.current.value;
+
+      if (!validatePassword(password)) {
+        setError('Password must contain at least one letter and one number.');
+        return;
+      }
+
+      setError(null);
+
       dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
+        login: login,
+        password: password
       }));
       navigate('/');
     }
@@ -27,7 +43,7 @@ export default function Login () {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <a className="header__logo-link" href="/">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"></img>
               </a>
             </div>
@@ -39,6 +55,7 @@ export default function Login () {
           <section className="login">
             <h1 className="login__title">Sign in</h1>
             <form className="login__form form" action="" onSubmit={handleSubmit}>
+              {error && <div className="login__error">{error}</div>}
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden" htmlFor="email">E-mail</label>
                 <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" id="email" required></input>

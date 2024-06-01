@@ -70,9 +70,9 @@ const FavoriteCard = (props: Place) => {
         {rareCard(props.rating)}
         <h2 className="place-card__name">
           <ScrollTop />
-          <NavLink to={`/offer/${activeOfferId}`} >{props.roomType}</NavLink>
+          <NavLink to={`/offer/${activeOfferId}`} >{props.roomName}</NavLink>
         </h2>
-        <p className="place-card__type">{props.roomName}</p>
+        <p className="place-card__type">{props.roomType}</p>
       </div>
     </article>
   );

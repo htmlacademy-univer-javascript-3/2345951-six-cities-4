@@ -6,7 +6,7 @@ type ReviewListProps = {
 };
 
 export default function ReviewsList({ reviews }: ReviewListProps) {
-  const displayedReviews = reviews.slice(0, 10).reverse();
+  const displayedReviews = [...reviews].reverse().slice(0, 10);
 
   return (
     <div>
