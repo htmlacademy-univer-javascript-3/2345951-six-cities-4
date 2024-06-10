@@ -7,6 +7,7 @@ import {AuthorizationStatus, Place} from '../types/offer.tsx';
 import ScrollTop from './scroll-top.ts';
 import {NavLink} from 'react-router-dom';
 import {filters, rareCard} from '../consts/cities.tsx';
+import { useNavigate } from 'react-router-dom';
 
 type FavouriteCardListProps = {
   favouriteCards: Place[];
@@ -19,13 +20,25 @@ const FavoriteCard = (props: Place) => {
   const favoritesCounter = useAppSelector((state) => state.favourites.favouritesCounter);
   const [activeOfferId, setActiveOfferId] = useState('');
   const [isFavorite, setIsFavorite] = useState(props.isFavorite);
-  function handleMouseOver() {
-    if (props.onListItemHover) {
-      props.onListItemHover(props.id);
+  const navigate = useNavigate();
+
+  function handleMouseEnter() {
+    if (props.onMouseEnter) {
+      props.onMouseEnter();
     }
     setActiveOfferId(props.id);
   }
+
+  function handleMouseLeave() {
+    if (props.onMouseLeave) {
+      props.onMouseLeave();
+    }
+  }
   function handleIsFavorite() {
+    if (isAuthorized !== AuthorizationStatus.Auth) {
+      navigate('/login');
+      return;
+    }
     if (isFavorite) {
       dispatch(updateFavourite({
         id: props.id,
@@ -42,7 +55,7 @@ const FavoriteCard = (props: Place) => {
       dispatch(updateFavouritesCounter(favoritesCounter + 1));
     }
   }
-  const authorized = (isAuthorized === AuthorizationStatus.Auth) && (
+  const authorized = (
     <button className={isFavorite ? 'place-card__bookmark-button place-card__bookmark-button--active button' : 'place-card__bookmark-button button'}
       type="button" onClick={handleIsFavorite}
     >
@@ -53,7 +66,7 @@ const FavoriteCard = (props: Place) => {
     </button>
   );
   return (
-    <article className="favorites__card place-card" onMouseOver={handleMouseOver}>
+    <article className="favorites__card place-card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={`${props.image}`} width="150" height="110" alt="Place image" />
