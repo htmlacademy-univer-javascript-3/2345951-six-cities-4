@@ -27,10 +27,12 @@ test('Избранное', async ({ page }) => {
 
   await page.waitForURL('**/favourites');
 
-  const favoritePageText = await page.locator('.favorites__title').textContent();
+
   if (favoriteCount === 0) {
-    expect(favoritePageText).toBe('There will be your favourites');
+    const favoritePageTextEmpty = await page.locator('.favorites__status').textContent();
+    expect(favoritePageTextEmpty).toBe('Nothing yet saved.');
   } else {
+    const favoritePageText = await page.locator('.favorites__title').textContent();
     expect(favoritePageText).toBe('Saved listing');
   }
 

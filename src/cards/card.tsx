@@ -1,27 +1,27 @@
 import ScrollTop from '../components/scroll-top.ts';
-import {NavLink} from 'react-router-dom';
-import {memo, useState} from 'react';
-import {AuthorizationStatus, Place} from '../types/offer.tsx';
-import {useAppDispatch, useAppSelector} from '../hooks';
-import {updateFavourite} from '../api/api-action.ts';
-import {FavouritesStatus} from '../consts/favourites-consts.ts';
-import {updateFavouritesCounter} from '../store/action.ts';
-import {rareCard} from '../consts/cities.tsx';
+import { NavLink } from 'react-router-dom';
+import { memo, useState } from 'react';
+import { AuthorizationStatus, Place } from '../types/offer.tsx';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { updateFavourite } from '../api/api-action.ts';
+import { FavouritesStatus } from '../consts/favourites-consts.ts';
+import { updateFavouritesCounter } from '../store/action.ts';
+import { rareCard } from '../consts/cities.tsx';
 import { useNavigate } from 'react-router-dom';
 
-function Card(place: Place): JSX.Element {
+type CardProps = {
+  place: Place;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+};
+
+function Card({ place, onMouseEnter, onMouseLeave }: CardProps): JSX.Element {
   const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
   const favouritesCounter = useAppSelector((state) => state.favourites.favouritesCounter);
-  const [activeOfferId, setActiveOfferId] = useState('');
   const [isFavourite, setIsFavourite] = useState(place.isFavorite);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  function handleMouseOver() {
-    if (place.onListItemHover) {
-      place.onListItemHover(place.id);
-    }
-    setActiveOfferId(place.id);
-  }
+
   function handleIsFavorite() {
     if (isAuthorized !== AuthorizationStatus.Auth) {
       navigate('/login');
@@ -45,11 +45,12 @@ function Card(place: Place): JSX.Element {
   }
 
   return (
-    <article className="cities__card place-card" onMouseOver={handleMouseOver}>
+    <article className="cities__card place-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {place.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
-        </div>)}
+        </div>
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
@@ -80,7 +81,7 @@ function Card(place: Place): JSX.Element {
         {rareCard(place.rating)}
         <h2 className="place-card__name">
           <ScrollTop />
-          <NavLink to={`/offer/${activeOfferId}`}>{place.roomName}</NavLink>
+          <NavLink to={`/offer/${place.id}`}>{place.roomName}</NavLink>
         </h2>
         <p className="place-card__type">{place.roomType}</p>
       </div>
