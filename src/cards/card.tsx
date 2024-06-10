@@ -1,4 +1,4 @@
-import ScrollTop from '../components/scroll-top.tsx';
+import ScrollTop from '../components/scroll-top.ts';
 import {NavLink} from 'react-router-dom';
 import {memo, useState} from 'react';
 import {AuthorizationStatus, Place} from '../types/offer.tsx';

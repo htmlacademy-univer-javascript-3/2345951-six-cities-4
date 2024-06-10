@@ -4,7 +4,7 @@ import {updateFavourite} from '../api/api-action.ts';
 import {FavouritesStatus} from '../consts/favourites-consts.ts';
 import {updateFavouritesCounter} from '../store/action.ts';
 import {AuthorizationStatus, Place} from '../types/offer.tsx';
-import ScrollTop from './scroll-top.tsx';
+import ScrollTop from './scroll-top.ts';
 import {NavLink} from 'react-router-dom';
 import {filters, rareCard} from '../consts/cities.tsx';
 

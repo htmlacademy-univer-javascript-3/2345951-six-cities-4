@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../hooks';
-import Spinner from '../pages/Loading-Screen.tsx';
+import Spinner from '../pages/loading-screen.tsx';
 import {AuthorizationStatus} from '../types/offer.tsx';
 
 type PrivateRouteProps = {

@@ -6,7 +6,7 @@ import Map from '../components/cities-map.tsx';
 import {store} from '../store/index.ts';
 import Filters from '../components/filter.tsx';
 import CitiesList from '../cities-list/cities-list.tsx';
-import Header from './Header.tsx';
+import Header from './header.tsx';
 
 export default function Main () {
   const [currentState, setCurrentState] = useState(store.getState().offers);
@@ -15,7 +15,7 @@ export default function Main () {
     lng: item.location.longitude,
     ...item
   }));
-  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(points[0]);
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
   const handleListItemHover = (listItemName: string) => {
     const currentPoint = points.find((point) => point.id === listItemName);
     setSelectedPoint(currentPoint);
@@ -62,7 +62,7 @@ export default function Main () {
                   image: item.previewImage,
                   roomName: item.title,
                   roomType: item.type,
-                  onListItemHover: handleListItemHover,
+                  onListItemHover: () => handleListItemHover(item.id),
                 }))}
                 sortType={sortType}
                 />

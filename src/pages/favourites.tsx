@@ -1,8 +1,8 @@
 import {OfferType} from '../types/offer.tsx';
-import Header from './Header.tsx';
+import Header from './header.tsx';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {useEffect} from 'react';
-import Spinner from './Loading-Screen.tsx';
+import Spinner from './loading-screen.tsx';
 import {fetchFavourites} from '../api/api-action.ts';
 import {constCities, filters} from '../consts/cities.tsx';
 import FavouriteCardList from '../components/favourite-list.tsx';

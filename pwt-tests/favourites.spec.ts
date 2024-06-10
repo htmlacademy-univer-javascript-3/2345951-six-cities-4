@@ -25,7 +25,7 @@ test('Избранное', async ({ page }) => {
 
   await page.locator('.header__favorite-count').click();
 
-  await page.waitForURL('**/Favourites');
+  await page.waitForURL('**/favourites');
 
   const favoritePageText = await page.locator('.favorites__title').textContent();
   if (favoriteCount === 0) {

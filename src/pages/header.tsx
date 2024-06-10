@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../hooks';
-import Spinner from './Loading-Screen.tsx';
+import Spinner from './loading-screen.tsx';
 import {logoutAction} from '../api/api-action.ts';
 import {updateUserLogin} from '../store/action.ts';
 import {AuthorizationStatus} from '../types/offer.tsx';
@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
       </li>
     );
     userSection = (
-      <a className="headernav-link headernav-link--profile" href="/Favourites">
+      <a className="headernav-link headernav-link--profile" href="/favourites">
         <div className="headeravatar-wrapper useravatar-wrapper">
         </div>
         <span className="headeruser-name username">{userLogin}</span>

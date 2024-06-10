@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {AuthorizationStatus, OfferType} from '../types/offer.tsx';
-import NotFoundPage from '../error/NotFound.tsx';
+import NotFoundPage from '../error/not-found.tsx';
 import ReviewsList from '../components/review-list.tsx';
 import Map from '../components/cities-map.tsx';
 import {useAppDispatch, useAppSelector} from '../hooks/index.ts';
@@ -8,9 +8,9 @@ import {useEffect, useState} from 'react';
 import {fetchSingleOfferAction, fetchCommentsAction, updateFavourite} from '../api/api-action.ts';
 import CardsList from '../cards/offerList.tsx';
 import {filters, rareOffer} from '../consts/cities.tsx';
-import Spinner from './Loading-Screen.tsx';
-import Header from './Header.tsx';
-import ReviewForm from '../components/Review-Form.tsx';
+import Spinner from './loading-screen.tsx';
+import Header from './header.tsx';
+import ReviewForm from '../components/review-form.tsx';
 import {setOffersDataLoadingStatus, updateFavouritesCounter} from '../store/action.ts';
 import {FavouritesStatus} from '../consts/favourites-consts.ts';
 
