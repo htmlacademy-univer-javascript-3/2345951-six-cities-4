@@ -1,4 +1,4 @@
-import {combineReducers, createReducer} from '@reduxjs/toolkit';
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import {
   requireAuthorization, setFavouritesDataLoadingStatus,
   setOffersDataLoadingStatus, setUserDataLoadingStatus,
@@ -6,7 +6,7 @@ import {
   updateCurrentOffer, updateCurrentReviews, updateFavourites, updateFavouritesCounter,
   updateOffers, updateUserLogin
 } from './action.ts';
-import {AuthorizationStatus, InitialStateFavourites, InitialStateOffer, InitialStateUser} from '../types/offer.tsx';
+import { AuthorizationStatus, InitialStateFavourites as InitialStateFavouritesType, InitialStateOffer, InitialStateUser as InitialStateUserType } from '../types/offer.tsx';
 
 const initialStateOffer: InitialStateOffer = {
   city: 'Paris',
@@ -17,13 +17,13 @@ const initialStateOffer: InitialStateOffer = {
   currentReviews: []
 };
 
-const InitialStateFavourites: InitialStateFavourites = {
+const initialStateFavourites: InitialStateFavouritesType = {
   favourites: [],
   favouritesCounter: 0,
   isFavouriteDataLoading: true
 };
 
-const InitialStateUser: InitialStateUser = {
+const initialStateUser: InitialStateUserType = {
   isUserDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userLogin: null
@@ -50,7 +50,7 @@ const OfferReducer = createReducer(initialStateOffer, (builder) => {
     });
 });
 
-const FavoutiesReducer = createReducer(InitialStateFavourites, (builder) => {
+const FavouritesReducer = createReducer(initialStateFavourites, (builder) => {
   builder
     .addCase(setFavouritesDataLoadingStatus, (state, action) => {
       state.isFavouriteDataLoading = action.payload;
@@ -64,7 +64,7 @@ const FavoutiesReducer = createReducer(InitialStateFavourites, (builder) => {
     });
 });
 
-const UserReducer = createReducer(InitialStateUser, (builder) => {
+const UserReducer = createReducer(initialStateUser, (builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
@@ -80,5 +80,5 @@ const UserReducer = createReducer(InitialStateUser, (builder) => {
 export const reducer = combineReducers({
   user: UserReducer,
   offers: OfferReducer,
-  favourites: FavoutiesReducer
+  favourites: FavouritesReducer
 });

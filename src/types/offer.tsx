@@ -58,11 +58,12 @@ export type Place = {
   image: string;
   isFavorite: boolean;
   isPremium?: boolean;
-  onListItemHover?: (listItemName: string) => void;
   price: number;
   rating?: number;
   roomName: string;
   roomType: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
 export type FullOffer = {

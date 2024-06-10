@@ -30,26 +30,26 @@ export default function Filters({handleSort}: FiltersProps): JSX.Element {
         </svg>
       </span>
       {isDropdownOpen && (
-        <ul className="placesoptions placesoptions--custom places__options--opened">
-          <li className={filter === filters.POPULAR ? 'placesoption placesoption--active' : 'placesoption'} tabIndex={0} onClick={() => {
+        <ul className="places__options  places__options--custom places__options--opened">
+          <li className={filter === filters.POPULAR ? ' places__options  places__options--active' : ' places__options'} tabIndex={0} onClick={() => {
             handleFilter(filters.POPULAR);
             handleSort(filters.POPULAR);
           }}
           >{filters.POPULAR}
           </li>
-          <li className={filter === filters.LOW_TO_HIGH ? 'placesoption placesoption--active' : 'placesoption'} tabIndex={0} onClick={() => {
+          <li className={filter === filters.LOW_TO_HIGH ? ' places__options  places__options--active' : ' places__options'} tabIndex={0} onClick={() => {
             handleFilter(filters.LOW_TO_HIGH);
             handleSort(filters.LOW_TO_HIGH);
           }}
           >{filters.LOW_TO_HIGH}
           </li>
-          <li className={filter === filters.HIGH_TO_LOW ? 'placesoption placesoption--active' : 'placesoption'} tabIndex={0} onClick={() => {
+          <li className={filter === filters.HIGH_TO_LOW ? ' places__options  places__options--active' : ' places__options'} tabIndex={0} onClick={() => {
             handleFilter(filters.HIGH_TO_LOW);
             handleSort(filters.HIGH_TO_LOW);
           }}
           >{filters.HIGH_TO_LOW}
           </li>
-          <li className={filter === filters.TOP_RATED ? 'placesoption placesoption--active' : 'placesoption'} tabIndex={0} onClick={() => {
+          <li className={filter === filters.TOP_RATED ? ' places__options  places__options--active' : ' places__options'} tabIndex={0} onClick={() => {
             handleFilter(filters.TOP_RATED);
             handleSort(filters.TOP_RATED);
           }}

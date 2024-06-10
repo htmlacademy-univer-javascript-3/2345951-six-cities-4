@@ -1,14 +1,13 @@
 import Card from './card.tsx';
-import {filters} from '../consts/cities.tsx';
-import {Place} from '../types/offer.tsx';
-
+import { filters } from '../consts/cities.tsx';
+import { Place } from '../types/offer.tsx';
 
 type CardsListProps = {
   citiesCards: Place[];
   sortType: string;
 };
 
-function CardsList({citiesCards, sortType}: CardsListProps): JSX.Element {
+function CardsList({ citiesCards, sortType }: CardsListProps): JSX.Element {
   let sortedCards = citiesCards;
   if (sortType) {
     switch (sortType) {
@@ -26,7 +25,12 @@ function CardsList({citiesCards, sortType}: CardsListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {sortedCards.map((place) => (
-        <Card key={place.id} {...place}/>
+        <Card
+          key={place.id}
+          place={place}
+          onMouseEnter={place.onMouseEnter ?? (() => {})}
+          onMouseLeave={place.onMouseLeave ?? (() => {})}
+        />
       ))}
     </div>
   );
