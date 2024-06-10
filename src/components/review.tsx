@@ -1,5 +1,5 @@
-import {ReviewProps} from '../types/offer.tsx';
-import {memo} from 'react';
+import { ReviewProps } from '../types/offer.tsx';
+import { memo } from 'react';
 
 const formatDate = (dateString: string) => {
   const months = [
@@ -14,7 +14,7 @@ const formatDate = (dateString: string) => {
   return `${day} ${months[month]} ${year}`;
 };
 
-function Reviews(review : ReviewProps) {
+function Reviews(review: ReviewProps) {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

@@ -73,7 +73,7 @@ export default function Offer ({offers}: OffersProps) {
   }
   const selectedPoint = points.find((o) => o.title === offer.title);
   const offerInside = currentOffer.goods.map((item) => (
-    <li className="offer__inside-item" key={`${item}`}>
+    <li className="offer__inside-item" key={item}>
       {item}
     </li>
   ));
@@ -83,7 +83,7 @@ export default function Offer ({offers}: OffersProps) {
     `Max ${currentOffer?.maxAdults} ${currentOffer?.maxAdults > 1 ? 'adults' : 'adult' }`,
   ];
   const offerFeatures = features.map((item) => (
-    <li className="offer__feature offer__feature--entire" key={`${item}`}>
+    <li className="offer__feature offer__feature--entire" key={item}>
       {item}
     </li>
   ));
@@ -108,7 +108,7 @@ export default function Offer ({offers}: OffersProps) {
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               {currentOffer?.images.map((item) => (
-                <div className="offer__image-wrapper" key={currentOffer.id}>
+                <div className="offer__image-wrapper" key={item}>
                   <img className="offer__image" src={item} alt={`Photo studio ${currentOffer.id}`} />
                 </div>
               ))}
