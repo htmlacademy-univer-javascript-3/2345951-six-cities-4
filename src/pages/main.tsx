@@ -68,9 +68,14 @@ export default function Main () {
                 />
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map city={currentState.cityOffers[0].city} points={points} selectedPoint={selectedPoint} height='800px' width='515px' />
-                </section>
+                <Map
+                  city={currentState.cityOffers[0].city}
+                  points={points}
+                  selectedPoint={selectedPoint}
+                  height="800px"
+                  width="515px"
+                  className="cities__map map"
+                />
               </div>
             </div>)}
         </div>

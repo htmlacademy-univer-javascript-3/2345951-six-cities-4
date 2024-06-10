@@ -13,6 +13,7 @@ import Header from './header.tsx';
 import ReviewForm from '../components/review-form.tsx';
 import {setOffersDataLoadingStatus, updateFavouritesCounter} from '../store/action.ts';
 import {FavouritesStatus} from '../consts/favourites-consts.ts';
+import { useNavigate } from 'react-router-dom';
 
 type OffersProps = {
   offers: OfferType[];
@@ -26,6 +27,7 @@ export default function Offer ({offers}: OffersProps) {
   const params = useParams();
   const offer = offers.find((o) => o.id === params.id);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (offer?.id) {
       dispatch(fetchSingleOfferAction({id: offer.id}));
@@ -35,6 +37,10 @@ export default function Offer ({offers}: OffersProps) {
   }, [dispatch, offer?.id]);
   const [isFavorite, setIsFavorite] = useState(offer?.isFavorite);
   const handleIsFavorite = () => {
+    if (isAuthorized !== AuthorizationStatus.Auth) {
+      navigate('/login');
+      return;
+    }
     if (isFavorite) {
       dispatch(updateFavourite({
         id: currentOffer?.id,
@@ -81,12 +87,15 @@ export default function Offer ({offers}: OffersProps) {
       {item}
     </li>
   ));
-  const authorized = (isAuthorized === AuthorizationStatus.Auth) && (
-    <button className={isFavorite ? 'offer__bookmark-button offer__bookmark-button--active button' : 'offer__bookmark-button button'} type="button" onClick={handleIsFavorite}>
+  const authorized = (
+    <button
+      className={isFavorite ? 'offer__bookmark-button offer__bookmark-button--active button' : 'offer__bookmark-button button'}
+      type="button" onClick={handleIsFavorite}
+    >
       <svg className="offer__bookmark-icon" width="31" height="33">
         <use href="#icon-bookmark"></use>
       </svg>
-      <span className="visually-hidden">To Bookmarks</span>
+      <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
     </button>
   );
 
@@ -154,13 +163,18 @@ export default function Offer ({offers}: OffersProps) {
               </div>
               <section className="offer__reviews reviews">
                 <ReviewsList reviews={currentReviews} />
-                <ReviewForm offerId={currentOffer?.id}/>
+                {isAuthorized === AuthorizationStatus.Auth && <ReviewForm offerId={currentOffer?.id} />}
               </section>
             </div>
           </div>
-          <section className="offer__map map">
-            <Map city={currentOffer?.city} points={points} selectedPoint={selectedPoint} height='600px' width='1200px'/>
-          </section>
+          <Map
+            city={currentOffer?.city}
+            points={points}
+            selectedPoint={selectedPoint}
+            height="600px"
+            width="1200px"
+            className="offer__map map"
+          />
         </section>
         <div className="container">
           <section className="near-places places">
